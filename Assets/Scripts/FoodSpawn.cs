@@ -8,7 +8,7 @@ public class FoodSpawn : MonoBehaviour
     public float Rate;
     void Start() 
     {
-        InvokeRepeating("Generate", 0, Rate * Time.deltaTime);
+        InvokeRepeating("Generate", 0, Rate);
     }
     void Update()
     {

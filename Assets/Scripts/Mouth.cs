@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eaten : MonoBehaviour
+public class Mouth : MonoBehaviour
 {
+    public float sizeChange;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +18,17 @@ public class Eaten : MonoBehaviour
     {
         
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Mouth"))
+        ProcessCollision(collision.gameObject);
+    }
+
+    void ProcessCollision(GameObject collider)
+    {
+        if (collider.gameObject.CompareTag("Food"))
         {
-            Destroy(gameObject);
+             Growing.size = Growing.size * sizeChange;
         }
     }
 }

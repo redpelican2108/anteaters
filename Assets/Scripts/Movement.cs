@@ -21,9 +21,16 @@ public class Movement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         transform.position += new Vector3(horizontal, vertical, 0).normalized * speed * Time.deltaTime;
 
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position.normalized;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-        
+        // Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position.normalized;
+        // float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        // transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector2 direction = new Vector2(
+        mousePosition.x - transform.position.x,
+        mousePosition.y - transform.position.y
+        );
+
+        transform.up = direction;
     }
 }
