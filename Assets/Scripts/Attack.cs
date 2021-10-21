@@ -5,7 +5,6 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
 	private GameObject self;
-	private GameObject other;
 
 	// Start is called before the first frame update
 	void Start()
@@ -20,26 +19,20 @@ public class Attack : MonoBehaviour
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		Debug.Log("Collided with weak point!");
-		GameObject otherWeakPoint = collision.gameObject;
-		other = otherWeakPoint.transform.root.gameObject;
-		Health otherHealthComponent = other.GetComponent<Health>();
-		WeakPoint otherWeakPointComponent = otherWeakPoint.GetComponent<WeakPoint>();
+		Debug.Log("Collision detected!");
+		GameObject collisionPart = collision.gameObject;
+		GameObject collisionRoot = collisionPart.transform.root.gameObject;
+		Parasite parasiteScript = collisionRoot.GetComponent<Parasite>();
 
-		if (otherHealthComponent != null) {
-			Debug.Log("health component found");
-			int otherHealth = otherHealthComponent.health;
-			if (otherWeakPointComponent != null) {
-				Debug.Log("WeakPoint component found");
-				int otherHealthThreshold = otherWeakPointComponent.healthThreshold;
-				if(otherHealth <= otherHealthThreshold) {
-					takeOver(other);
-				} else {
-					Debug.Log(other.name + " has too much health to take over!");
-				}
+		if (collisionPart.tag == "WeakPoint" && collisionRoot.tag == "Enemy") {
+			int otherHealth = parasiteScript.health;
+			int takeOverThreshold = parasiteScript.takeOverThreshold;
+			if(otherHealth <= takeOverThreshold) {
+				takeOver(collisionRoot);
+			} else {
+				Debug.Log(collisionRoot.name + " has too much health to take over!");
 			}
-
-		}	
+		}
 	}
 
 	void takeOver(GameObject other) {
