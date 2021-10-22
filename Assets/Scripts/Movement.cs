@@ -5,25 +5,38 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed;
+    private Rigidbody2D rb;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        faceMouse();
+    }
 
+    private void FixedUpdate()
+    {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        transform.position += new Vector3(horizontal, vertical, 0).normalized * speed * Time.deltaTime;
+        rb.AddForce(new Vector2(horizontal, vertical).normalized * speed); 
+    }
 
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position.normalized;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-        
+    void faceMouse()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Vector2 direction = new Vector2(
+            mousePosition.x - transform.position.x,
+            mousePosition.y - transform.position.y
+        );
+
+        transform.up = direction;
     }
 }
