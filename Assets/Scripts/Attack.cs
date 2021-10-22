@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-	private GameObject self;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		self = gameObject;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		Debug.Log("Collision detected!");
+
 		GameObject collisionPart = collision.gameObject;
 		GameObject collisionRoot = collisionPart.transform.root.gameObject;
+		Debug.Log("by " + gameObject.name + "root: " + gameObject.transform.root.gameObject.name );
 		Parasite parasiteScript = collisionRoot.GetComponent<Parasite>();
 
 		if (collisionPart.tag == "WeakPoint" && collisionRoot.tag == "Enemy") {
@@ -37,11 +36,17 @@ public class Attack : MonoBehaviour
 
 	void takeOver(GameObject other) {
 		Debug.Log("Taking over " + other.name);
-		Movement movementComponent = GetComponent<Movement>();
+
+		GameObject self = gameObject.transform.root.gameObject;
+		
+        Movement movementComponent = self.GetComponent<Movement>();
 		Movement otherMovementComponent = other.AddComponent<Movement>();
-		otherMovementComponent.speed = movementComponent.speed;
+		
+        otherMovementComponent.speed = movementComponent.speed;
 
 		Attack otherAttackComponent = other.AddComponent<Attack>();
+
+        Growing otherGrowingComponent = other.AddComponent<Growing>();
 
 		Rigidbody2D otherRigidBody = other.AddComponent<Rigidbody2D>();
 		otherRigidBody.gravityScale = 0;
