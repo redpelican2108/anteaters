@@ -4,51 +4,49 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-	private GameObject self;
-	private GameObject other;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		self = gameObject;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		Debug.Log("Collided with weak point!");
-		GameObject otherWeakPoint = collision.gameObject;
-		other = otherWeakPoint.transform.root.gameObject;
-		Health otherHealthComponent = other.GetComponent<Health>();
-		WeakPoint otherWeakPointComponent = otherWeakPoint.GetComponent<WeakPoint>();
+		Debug.Log("Collision detected!");
 
-		if (otherHealthComponent != null) {
-			Debug.Log("health component found");
-			int otherHealth = otherHealthComponent.health;
-			if (otherWeakPointComponent != null) {
-				Debug.Log("WeakPoint component found");
-				int otherHealthThreshold = otherWeakPointComponent.healthThreshold;
-				if(otherHealth <= otherHealthThreshold) {
-					takeOver(other);
-				} else {
-					Debug.Log(other.name + " has too much health to take over!");
-				}
+		GameObject collisionPart = collision.gameObject;
+		GameObject collisionRoot = collisionPart.transform.root.gameObject;
+		Debug.Log("by " + gameObject.name + "root: " + gameObject.transform.root.gameObject.name );
+		Parasite parasiteScript = collisionRoot.GetComponent<Parasite>();
+
+		if (collisionPart.tag == "WeakPoint" && collisionRoot.tag == "Enemy") {
+			int otherHealth = parasiteScript.health;
+			int takeOverThreshold = parasiteScript.takeOverThreshold;
+			if(otherHealth <= takeOverThreshold) {
+				takeOver(collisionRoot);
+			} else {
+				Debug.Log(collisionRoot.name + " has too much health to take over!");
 			}
-
-		}	
+		}
 	}
 
 	void takeOver(GameObject other) {
 		Debug.Log("Taking over " + other.name);
-		Movement movementComponent = GetComponent<Movement>();
+
+		GameObject self = gameObject.transform.root.gameObject;
+		
+        Movement movementComponent = self.GetComponent<Movement>();
 		Movement otherMovementComponent = other.AddComponent<Movement>();
-		otherMovementComponent.speed = movementComponent.speed;
+		
+        otherMovementComponent.speed = movementComponent.speed;
 
 		Attack otherAttackComponent = other.AddComponent<Attack>();
+
+        Growing otherGrowingComponent = other.AddComponent<Growing>();
 
 		Rigidbody2D otherRigidBody = other.AddComponent<Rigidbody2D>();
 		otherRigidBody.gravityScale = 0;
