@@ -27,6 +27,6 @@ public class Movement : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        rb.velocity = new Vector2(horizontal, vertical).normalized * speed * Time.deltaTime; 
+        rb.AddForce(new Vector2(horizontal, vertical).normalized * speed); 
     }
 }
