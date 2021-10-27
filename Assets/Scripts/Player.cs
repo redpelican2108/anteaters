@@ -6,8 +6,10 @@ using System;
 public class Player : MonoBehaviour
 {
     public int health = 100;
-    public int size = 10;
+    public int size = 1;
     public int goal = 25;
+    public int damage = 1;
+    static public Vector3 scale;
 
     public event Action OnPlayerDeath;
     public event Action OnPlayerWin;
@@ -15,7 +17,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        scale = new Vector3(size, size, size);
     }
 
     // Update is called once per frame
@@ -33,5 +35,8 @@ public class Player : MonoBehaviour
                 OnPlayerWin();
             }
         }
+
+        transform.localScale = scale;
+
     }
 }

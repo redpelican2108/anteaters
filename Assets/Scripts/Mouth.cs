@@ -28,7 +28,8 @@ public class Mouth : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Food"))
         {
-             Growing.size = Growing.size * sizeChange;
+            Player.scale = Player.scale * sizeChange;
         }
+        
     }
 }

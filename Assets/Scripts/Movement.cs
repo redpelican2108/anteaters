@@ -17,7 +17,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        faceMouse();
+        if (Time.timeScale != 0) 
+        {
+            faceMouse();
+        }  
     }
 
     private void FixedUpdate()

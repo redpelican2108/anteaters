@@ -33,6 +33,7 @@ public class Attack : MonoBehaviour
                 Debug.Log(collisionRoot.name + " has too much health to take over!");
             }
         }
+        
     }
 
     void takeOver(GameObject other) {
@@ -48,7 +49,7 @@ public class Attack : MonoBehaviour
         Movement otherMovementComponent = other.AddComponent<Movement>();
         otherMovementComponent.speed = movementComponent.speed;
 
-        Growing otherGrowingComponent = other.AddComponent<Growing>();
+        Player otherGrowingComponent = other.AddComponent<Player>();
 
         Rigidbody2D objRigidBody = other.AddComponent<Rigidbody2D>();
         objRigidBody.gravityScale = 0;
