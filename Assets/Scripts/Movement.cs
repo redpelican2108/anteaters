@@ -29,4 +29,20 @@ public class Movement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         rb.AddForce(new Vector2(horizontal, vertical).normalized * speed); 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Detection")
+        {
+            collision.GetComponentInParent<Detection>().Toggle();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Detection")
+        {
+            collision.GetComponentInParent<Detection>().Toggle();
+        }
+    }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Food
   - Mouth
+  - Detection
   layers:
   - Default
   - TransparentFX
