@@ -5,16 +5,19 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public int size = 10;
-    public int goal = 25;
-    Health playerhealth;
 
+    Health playerhealth;
+    public int size = 1;
+    public int goal = 25;
+    public int damage = 1;
+    static public Vector3 scale;
     public event Action OnPlayerDeath;
     public event Action OnPlayerWin;
 
     void Awake()
     {
         playerhealth = gameObject.GetComponent<Health>();
+        scale = new Vector3(size, size, size);
     }
 
     // Update is called once per frame
@@ -32,6 +35,9 @@ public class Player : MonoBehaviour
                 OnPlayerWin();
             }
         }
+
+        transform.localScale = scale;
+
     }
 
     public int getPlayerHealth() {
