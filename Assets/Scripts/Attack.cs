@@ -43,7 +43,8 @@ public class Attack : MonoBehaviour
 
         GameObject self = gameObject.transform.root.gameObject;
         other.name = self.name;
-        
+        other.tag = "Player";
+
         Movement movementComponent = self.GetComponent<Movement>();
         Movement otherMovementComponent = other.AddComponent<Movement>();
         otherMovementComponent.speed = movementComponent.speed;
