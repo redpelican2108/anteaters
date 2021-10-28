@@ -7,9 +7,8 @@ public class Player : MonoBehaviour
 {
 
     Health playerhealth;
-    public int size = 1;
+    public float size = 1;
     public int goal = 25;
-    public int damage = 1;
     static public Vector3 scale;
     public event Action OnPlayerDeath;
     public event Action OnPlayerWin;
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour
             if(OnPlayerDeath != null) {
                 OnPlayerDeath();
             }
-            Destroy (gameObject);
         }
 
         if (size >= goal) {
@@ -40,7 +38,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public int getPlayerHealth() {
+    public float getPlayerHealth() {
         return playerhealth.currentHealth;
     }
 }

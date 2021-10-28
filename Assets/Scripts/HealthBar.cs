@@ -32,10 +32,6 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // for testing
-        if (Input.GetKeyDown("space")) {
-            myHealth.takeDamage(10);
-        }
     }
 
     void displayChangedHealth() {
