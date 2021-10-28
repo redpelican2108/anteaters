@@ -8,6 +8,7 @@ TagManager:
   - WeakPoint
   - Food
   - Mouth
+  - Detection
   layers:
   - Default
   - TransparentFX

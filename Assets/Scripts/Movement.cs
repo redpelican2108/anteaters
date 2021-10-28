@@ -17,7 +17,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        faceMouse();
+        if (Time.timeScale != 0) 
+        {
+            faceMouse();
+        }  
     }
 
     private void FixedUpdate()
@@ -25,6 +28,22 @@ public class Movement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         rb.AddForce(new Vector2(horizontal, vertical).normalized * speed); 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Detection")
+        {
+            collision.GetComponentInParent<Detection>().Toggle();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Detection")
+        {
+            collision.GetComponentInParent<Detection>().Toggle();
+        }
     }
 
     void faceMouse()
