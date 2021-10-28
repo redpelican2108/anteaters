@@ -16,6 +16,11 @@ public class Player : MonoBehaviour
     void Awake()
     {
         playerhealth = gameObject.GetComponent<Health>();
+
+    }
+
+    void Start() {
+        size = gameObject.transform.localScale.x;
         scale = new Vector3(size, size, size);
     }
 

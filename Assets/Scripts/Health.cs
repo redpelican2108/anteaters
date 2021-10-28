@@ -6,9 +6,12 @@ using System;
 public class Health : MonoBehaviour
 {
 	
-    [HideInInspector] public float currentHealth = 100;
+    //[HideInInspector] public float currentHealth = 100;
 
+    public float currentHealth = 100;
+    
     public float maxHealth = 100f;
+    public float takeOverThreshold = 30f;
     private float currentDamageTaken;
     private float damageDuration;
     private float timer = 0;
