@@ -19,13 +19,15 @@ public class GameUI : MonoBehaviour
 
     void Start() {
         player = FindObjectOfType<Player>();
+    
         player.OnPlayerDeath += gameOver;
         player.OnPlayerWin += gameWon;
 
         if (goalvalue != null && sizevalue != null && hpvalue != null) {
-        goalvalue.text = player.goal.ToString();
-        sizevalue.text = player.size.ToString();
-        hpvalue.text = player.health.ToString();
+            goalvalue.text = player.goal.ToString();
+            sizevalue.text = player.size.ToString();
+            hpvalue.text = "100";
+            player.getPlayerHealth().ToString();
         }
     }
 
@@ -34,10 +36,11 @@ public class GameUI : MonoBehaviour
         {
             pause();
         }
+
         if (goalvalue != null && sizevalue != null && hpvalue != null) {
-        goalvalue.text = player.goal.ToString();
-        sizevalue.text = player.size.ToString();
-        hpvalue.text = player.health.ToString();
+            goalvalue.text = player.goal.ToString();
+            sizevalue.text = player.size.ToString();
+            hpvalue.text = player.getPlayerHealth().ToString();
         }
     }
 

@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour
 
 		if (otherHealthComponent != null) {
 			Debug.Log("health component found");
-			int otherHealth = otherHealthComponent.health;
+			int otherHealth = otherHealthComponent.currentHealth;
 			if (otherWeakPointComponent != null) {
 				Debug.Log("WeakPoint component found");
 				int otherHealthThreshold = otherWeakPointComponent.healthThreshold;
