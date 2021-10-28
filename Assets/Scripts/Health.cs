@@ -6,8 +6,7 @@ using System;
 public class Health : MonoBehaviour
 {
 	
-    // [HideInInspector] 
-    public int currentHealth = 100;
+    [HideInInspector] public int currentHealth = 100;
 
     public int maxHealth = 100;
     public event Action OnHealthChange;
