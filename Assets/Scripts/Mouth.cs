@@ -5,6 +5,8 @@ using UnityEngine;
 public class Mouth : MonoBehaviour
 {
     public float sizeChange;
+    public int damage;
+    public float damageDuration;
     public GameObject MouthObject;
     
     // Start is called before the first frame update
@@ -23,16 +25,19 @@ public class Mouth : MonoBehaviour
         GameObject collisionRoot = collisionPart.transform.root.gameObject;
         //Debug.Log("by " + gameObject.name + "root: " + gameObject.transform.root.gameObject.name );
         Parasite parasiteScript = collisionRoot.GetComponent<Parasite>();
-
+        /*
         if (collisionPart.tag == "WeakPoint" && collisionRoot.tag == "Enemy") {
+            
             int otherHealth = parasiteScript.health;
             int takeOverThreshold = parasiteScript.takeOverThreshold;
+            
             if(otherHealth <= takeOverThreshold) {
                 takeOver(collisionRoot);
             } else {
                 Debug.Log(collisionRoot.name + " has too much health to take over!");
             }
         }
+        */
 
         if (collisionPart.CompareTag("Food")) {
             Player.scale = Player.scale * sizeChange;
@@ -86,6 +91,7 @@ public class Mouth : MonoBehaviour
                 break;
             }
         }
+        
     }
 
 }

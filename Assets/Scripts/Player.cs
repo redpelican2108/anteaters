@@ -5,29 +5,27 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public int health = 100;
-    public int size = 1;
-    public int goal = 25;
-    public int damage = 1;
-    static public Vector3 scale;
 
+    Health playerhealth;
+    public float size = 1;
+    public int goal = 25;
+    static public Vector3 scale;
     public event Action OnPlayerDeath;
     public event Action OnPlayerWin;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        playerhealth = gameObject.GetComponent<Health>();
         scale = new Vector3(size, size, size);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0) {
+        if (playerhealth.currentHealth <= 0) {
             if(OnPlayerDeath != null) {
                 OnPlayerDeath();
             }
-            Destroy (gameObject);
         }
 
         if (size >= goal) {
@@ -38,5 +36,9 @@ public class Player : MonoBehaviour
 
         transform.localScale = scale;
 
+    }
+
+    public float getPlayerHealth() {
+        return playerhealth.currentHealth;
     }
 }
