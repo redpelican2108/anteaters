@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7992195472561491373}
   - component: {fileID: 7992195472561491360}
   - component: {fileID: 7992195472561491375}
-  - component: {fileID: 7992195472561491374}
   - component: {fileID: 7992195472561491362}
   - component: {fileID: 7992195472561491361}
-  - component: {fileID: 7988311082877731711}
+  - component: {fileID: 5353613001386716164}
   m_Layer: 0
   m_Name: Mouth
   m_TagString: Mouth
@@ -73,19 +72,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7992195472561491374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7992195472561491372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e8277d3bc4d5e42a8a59c568e32e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sizeChange: 1.1
 --- !u!255 &7992195472561491362
 FixedJoint2D:
   m_ObjectHideFlags: 0
@@ -156,7 +142,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7988311082877731711
+--- !u!114 &5353613001386716164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,7 +151,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7992195472561491372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c59f8be1b24bd2458843686baadf6b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 57e8277d3bc4d5e42a8a59c568e32e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mouth: {fileID: 7992195472561491372}
+  sizeChange: 1.1
+  MouthObject: {fileID: 7992195472561491372}
