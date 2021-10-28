@@ -41,6 +41,8 @@ public class Movement : MonoBehaviour
         {
             collision.GetComponentInParent<Detection>().Toggle();
         }
+    }
+
     void faceMouse()
     {
         Vector3 mousePosition = Input.mousePosition;
