@@ -60,11 +60,23 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void heal(int healAmount) {
+    public void heal(float healAmount) {
         currentHealth += healAmount;
         if (currentHealth > maxHealth) {
             currentHealth = maxHealth;
         }
+        if (OnHealthChange != null) {
+            OnHealthChange();
+        }
+    }
+
+    public void setHealth(float hp) {
+        if (hp >= 0 && hp < maxHealth) {
+            currentHealth = hp;
+        } else {
+            Debug.Log("Error, setting health to invalid value");
+        }
+
         if (OnHealthChange != null) {
             OnHealthChange();
         }

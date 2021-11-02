@@ -43,7 +43,7 @@ public class WeakPoint : MonoBehaviour
         player.transform.rotation = selfRoot.transform.rotation; 
         player.GetComponent<Player>().size = selfRoot.transform.localScale.x;
         
-        player.GetComponent<Health>().currentHealth = selfRoot.GetComponent<Health>().currentHealth;
+        player.GetComponent<Health>().setHealth(selfRoot.GetComponent<Health>().currentHealth);
 
         Debug.Log("player health change to " + selfRoot.GetComponent<Health>().currentHealth);
         Destroy(selfRoot);

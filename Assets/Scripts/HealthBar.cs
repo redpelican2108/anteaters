@@ -26,7 +26,6 @@ public class HealthBar : MonoBehaviour
     void LateUpdate() {
         transform.rotation = rotation;
         this.gameObject.transform.position = this.gameObject.transform.parent.localPosition + offset;
-        // this.gameObject.transform.parent.transform.position +
     }
 
     // Update is called once per frame

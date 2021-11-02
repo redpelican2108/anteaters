@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public event Action OnPlayerDeath;
     public event Action OnPlayerWin;
 
+    private float prevSize;
     void Awake()
     {
         playerhealth = gameObject.GetComponent<Health>();
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
 
     void Start() {
         size = gameObject.transform.localScale.x;
+        prevSize = size;
         scale = new Vector3(size, size, size);
     }
 
@@ -39,8 +41,12 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (prevSize != size) {
+            float sizeChange = size - prevSize;
+            scale = scale + new Vector3(sizeChange, sizeChange, sizeChange);
+            prevSize = size;
+        }
         transform.localScale = scale;
-
     }
 
     public float getPlayerHealth() {
