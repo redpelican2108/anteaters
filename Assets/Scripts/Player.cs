@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         if (playerhealth.currentHealth <= 0) {
             if(OnPlayerDeath != null) {
                 OnPlayerDeath();
+                Destroy(gameObject);
             }
         }
 
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
 
         if (prevSize != size) {
             float sizeChange = size - prevSize;
-            scale = scale + new Vector3(sizeChange, sizeChange, sizeChange);
+            scale = scale + new Vector3(sizeChange, sizeChange, sizeChange) * 0.1f;
             prevSize = size;
         }
         transform.localScale = scale;

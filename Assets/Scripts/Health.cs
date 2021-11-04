@@ -30,8 +30,9 @@ public class Health : MonoBehaviour
                 if(gameObject.tag == ("Enemy"))
                 {
                     gameObject.GetComponent<Parasite>().EnemyDeath();
+                    Destroy(gameObject);
                 }
-                Destroy(gameObject);
+                
             }
         }
         if (OnHealthChange != null) {
