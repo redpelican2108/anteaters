@@ -21,6 +21,6 @@ public class Parasite : MonoBehaviour
 
     public void EnemyDeath()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().size += size;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().size += 0.5f*size;
     }
 }
