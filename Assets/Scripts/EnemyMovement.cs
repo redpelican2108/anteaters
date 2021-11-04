@@ -8,10 +8,12 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
     private Transform player;
+    private bool contact;
    
     // Start is called before the first frame update
     void Start()
     {
+        contact = false;
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
@@ -31,10 +33,26 @@ public class EnemyMovement : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(new Vector3(0,0,angle));
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-        
-        if((transform.position - player.position).magnitude > 1.5f)
+
+        if (!contact) 
         {
             transform.Translate((player.position - transform.position).normalized * speed * Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            contact = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            contact = false;
         }
     }
 }

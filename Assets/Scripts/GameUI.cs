@@ -56,11 +56,10 @@ public class GameUI : MonoBehaviour
 
     public void gameOver() {
         gameover = true;
-        Time.timeScale = 0;
         GameOverScreen.SetActive(true);
     }
 
     public void gameWon() {
-        SceneManager.LoadScene(NextLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
