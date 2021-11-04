@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelection.unity
     guid: 084b6cbcf203f3a4698412d17609bd28
   - enabled: 1
-    path: Assets/Scenes/levelone.unity
-    guid: 826d941129443bc42a804c1bc14b3b82
-  - enabled: 1
     path: Assets/Scenes/GameWon.unity
     guid: 5205d197b0a52e948a250a9534d02c68
+  - enabled: 1
+    path: Assets/Scenes/WZ level.unity
+    guid: e9cdecf8b3ee04c45afb69b87409c0df
+  - enabled: 1
+    path: Assets/Scenes/Xin Wei A.unity
+    guid: d7800844d1666804c93ad2893a6ac6f4
   m_configObjects: {}
