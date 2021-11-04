@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         if (playerhealth.currentHealth <= 0) {
             if(OnPlayerDeath != null) {
                 OnPlayerDeath();
+                Destroy(gameObject);
             }
         }
 
