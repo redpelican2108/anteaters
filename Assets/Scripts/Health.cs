@@ -12,10 +12,6 @@ public class Health : MonoBehaviour
     
     public float maxHealth = 100f;
     public float takeOverThreshold = 30f;
-    private float currentDamageTaken;
-    private float damageDuration;
-    private float timer = 0;
-    private bool takingDamage;
     public event Action OnHealthChange;
     public event Action OnDeath;
     
@@ -26,26 +22,9 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(takingDamage)
-        {
-            if(timer > 0)
-            {
-                timer -= Time.deltaTime;
-            } else
-            {
-                takeDamage(currentDamageTaken);
-                timer += damageDuration;
-            }
-        }
-    }
-
     public void takeDamage(float damageAmount) {
         currentHealth -= damageAmount;
         if (currentHealth <= 0) {
-            currentHealth = 0;
             if (OnDeath != null) {
                 OnDeath();
                 if(gameObject.tag == ("Enemy"))
@@ -86,25 +65,11 @@ public class Health : MonoBehaviour
         return (float) currentHealth / maxHealth;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Mouth")
         {
-            takingDamage = true;
-            currentDamageTaken = collision.GetComponent<Mouth>().damage;
-            damageDuration = collision.GetComponent<Mouth>().damageDuration;
-            
+            collision.GetComponent<Mouth>().DealDamage(this);
         }
     }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "Mouth")
-        {
-            takingDamage = false;
-            timer = 0;
-        }
-    }
-
-
 }

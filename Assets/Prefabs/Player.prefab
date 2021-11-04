@@ -132,7 +132,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   maxHealth: 100
+  takeOverThreshold: 30
 --- !u!114 &5326205419229038904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4413829058596561695}
     m_Modifications:
+    - target: {fileID: 5353613001386716164, guid: bec8e8eb81f732141a047e66b966abb0, type: 3}
+      propertyPath: damageDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7992195472561491360, guid: bec8e8eb81f732141a047e66b966abb0, type: 3}
       propertyPath: m_IsTrigger
       value: 1
