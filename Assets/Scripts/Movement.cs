@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     {
         if(collision.tag == "Detection")
         {
-            collision.GetComponentInParent<Detection>().Toggle();
+            collision.GetComponentInParent<EnemyMovement>().enabled = true;
         }
     }
 
@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.tag == "Detection")
         {
-            collision.GetComponentInParent<Detection>().Toggle();
+            collision.GetComponentInParent<EnemyMovement>().enabled = false;
         }
     }
 
