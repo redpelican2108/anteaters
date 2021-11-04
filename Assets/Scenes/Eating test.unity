@@ -344,8 +344,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d13ca3849ff05742863090422b31b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Food: {fileID: 2685583417665452476, guid: df09ec6c68f6336498eb52d18fdc9076, type: 3}
-  Rate: 1
+  food: {fileID: 2685583417665452476, guid: df09ec6c68f6336498eb52d18fdc9076, type: 3}
+  rate: 1
+  spawnXRange: 7
+  spawnYRange: 5
+  foodLimit: 5
 --- !u!4 &879025140
 Transform:
   m_ObjectHideFlags: 0
@@ -443,27 +446,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1622321649 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4413829058596561682, guid: bc980d2c4554682419c33556cba93590, type: 3}
-  m_PrefabInstance: {fileID: 1626306727}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1622321652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622321649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc1c4a6762b5ec4dae80df78dd0f998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  size: 1
-  goal: 25
-  damage: 10
 --- !u!1001 &1626306727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,6 +453,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1865391828678107547, guid: bc980d2c4554682419c33556cba93590, type: 3}
+      propertyPath: sizeChange.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865391828678107547, guid: bc980d2c4554682419c33556cba93590, type: 3}
+      propertyPath: sizeChange.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865391828678107547, guid: bc980d2c4554682419c33556cba93590, type: 3}
+      propertyPath: sizeChange.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4413829058596561682, guid: bc980d2c4554682419c33556cba93590, type: 3}
       propertyPath: m_Name
       value: Player

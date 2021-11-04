@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mouth : MonoBehaviour
 {
-    public float sizeChange;
+    public Vector3 sizeChange;
     public int damage;
     public float damageDuration;
     public GameObject MouthObject;
@@ -19,13 +19,18 @@ public class Mouth : MonoBehaviour
     {
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log("Collision detected!");
-        GameObject collisionPart = collision.gameObject;
-        GameObject collisionRoot = collisionPart.transform.root.gameObject;
-        
-        if (collisionPart.CompareTag("Food")) {
-            Player.scale = Player.scale * sizeChange;
+    
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Food")
+        {
+            Debug.Log("Collision detected!");
+            if (collision.gameObject.CompareTag("Food")) {
+                Player.scale += sizeChange;
+                Destroy(collision.gameObject);
+            }
         }
+            
+        
     }
 }

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class FoodSpawn : MonoBehaviour
 {
-    public GameObject Food;
-    public float Rate;
+    public GameObject food;
+    public float rate;
+    public float spawnXRange;
+    public float spawnYRange;
+    public int foodLimit;
     void Start() 
     {
-        InvokeRepeating("Generate", 0, Rate);
+        InvokeRepeating("Generate", 0, rate);
     }
     void Update()
     {
@@ -16,13 +19,17 @@ public class FoodSpawn : MonoBehaviour
     }
     void Generate()
     {
-        int x = Random.Range(0, Camera.main.pixelWidth);
-        int y = Random.Range(0, Camera.main.pixelHeight);
+        float x = Random.Range(-spawnXRange, spawnXRange);
+        float y = Random.Range(-spawnYRange, spawnYRange);
 
-        Vector3 Target = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
-        Target.z = 0;
-
-        Instantiate(Food, Target, Quaternion.identity);
+        Vector3 target = new Vector3(x, y, 0);
+    
+        int count = GameObject.FindGameObjectsWithTag("Food").Length;
+        if (count < foodLimit) 
+        {
+            Instantiate(food, target, Quaternion.identity);
+        }
+        
     }
     
 }
