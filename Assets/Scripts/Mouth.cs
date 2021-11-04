@@ -8,29 +8,32 @@ public class Mouth : MonoBehaviour
     public int damage;
     public float damageDuration;
     public GameObject MouthObject;
+    private float timer;
     
     // Start is called before the first frame update
     void Start()
     {
+        timer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
-    
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void DealDamage(Health health)
     {
-        if(collision.tag == "Food")
+        if(timer <= 0)
         {
-            Debug.Log("Collision detected!");
-            if (collision.gameObject.CompareTag("Food")) {
-                Player.scale += sizeChange;
-                Destroy(collision.gameObject);
-            }
+            health.takeDamage(damage);
+            timer += damageDuration;
         }
             
         
     }
+
 }
