@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         
-        if((transform.position - player.position).magnitude > 0.5f)
+        if((transform.position - player.position).magnitude > 1.5f)
         {
             transform.Translate((player.position - transform.position).normalized * speed * Time.deltaTime);
         }
